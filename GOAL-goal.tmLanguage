@@ -442,7 +442,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(program)\s*(?:\[*.\])?\s*\{</string>
+					<string>(program)\s*(?:\[.*\])?\s*\{</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -465,7 +465,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(actionspec)\s*(?:\[*.\])?\s*\{</string>
+					<string>(actionspec)\s*(?:\[.*\])?\s*\{</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>

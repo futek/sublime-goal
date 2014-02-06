@@ -49,14 +49,14 @@ repository:
       patterns:
       - include: 'source.prolog'
     - name: ''
-      begin: (program)\s*(?:\[*.\])?\s*\{
+      begin: (program)\s*(?:\[.*\])?\s*\{
       beginCaptures:
         '1': {name: keyword.other.name.goal.mas}
       end: \}
       patterns:
       - include: '#action-rules'
     - name: ''
-      begin: (actionspec)\s*(?:\[*.\])?\s*\{
+      begin: (actionspec)\s*(?:\[.*\])?\s*\{
       beginCaptures:
         '1': {name: keyword.other.name.goal.mas}
       end: \}
