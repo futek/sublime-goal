@@ -1,0 +1,124 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: GOAL (mas)
+scopeName: source.goal.mas
+fileTypes: [mas2g]
+uuid: 8cf6ac10-61cb-48d9-8dd4-c15f64f15996
+
+patterns:
+- name: ''
+  begin: (environment)\s*\{
+  beginCaptures:
+    '1': {name: keyword.other.name.goal.mas}
+  end: \}
+  patterns:
+  - include: '#environment'
+
+- name: ''
+  begin: (agentfiles)\s*\{
+  beginCaptures:
+    '1': {name: keyword.other.name.goal.mas}
+  end: \}
+  patterns:
+  - include: '#agentfiles'
+  - include: '#comment'
+
+- name: ''
+  begin: (launchpolicy)\s*\{
+  beginCaptures:
+    '1': {name: keyword.other.name.goal.mas}
+  end: \}
+  patterns:
+  - include: '#launchpolicy'
+  - include: '#comment'
+
+- include: '#comment'
+
+
+repository:
+  comment:
+    match: ((%).*)
+    captures:
+      '1': {name: comment.line.number-sign.goal.mas}
+      '2': {name: punctuation.definition.comment.line.goal.mas}
+  string:
+    name: string.quoted.double.goal.mas
+    match: (")[^"]+(")
+    captures:
+      '1': {name: punctuation.definition.string.begin.goal.mas}
+      '2': {name: punctuation.definition.string.end.goal.mas}
+  environment:
+    patterns:
+    - name: ''
+      match: (env)\s*=\s*((")[^"]*\.jar("))\s*\.
+      captures:
+        '1': {name: support.class.goal.mas}
+        '2': {name: string.quoted.double.goal.mas}
+        '3': {name: punctuation.definition.string.begin.goal.mas}
+        '4': {name: punctuation.definition.string.end.goal.mas}
+    - include: '#comment'
+    - name: ''
+      begin: (init)\s*=\s*\[
+      beginCaptures:
+        '1': {name: support.class.goal.mas}
+      end: \]\s*\.
+      patterns:
+      - include: '#environment-parameters'
+  environment-parameters:
+    patterns:
+    - name: constant.numeric.numeral.goal.mas
+      match: (-?[0-9]+\.?[0-9]*((e|E)-?[0-9]+)?|\.[0-9]+((e|E)-?[0-9]+)?)
+    - name: ''
+      begin: \[
+      end: \]
+      patterns:
+      - include: '#environment-parameters'
+    - include: '#comment'
+    - include: '#string'
+  agentfiles:
+    patterns:
+    - name: ''
+      begin: ((")[^"]*\.goal("))\s*\[
+      beginCaptures:
+        '1': {name: string.quoted.double.goal.mas}
+        '2': {name: punctuation.definition.string.begin.goal.mas}
+        '3': {name: punctuation.definition.string.end.goal.mas}
+      end: \]\s*\.
+      patterns:
+      - name: support.class.goal.mas
+        match: name
+    - name: string.quoted.double.goal.mas
+      match: (")[^"]*\.goal(")
+      captures:
+        '1': {name: punctuation.definition.string.begin.goal.mas}
+        '2': {name: punctuation.definition.string.end.goal.mas}
+    - include: '#comment'
+  launchpolicy:
+    patterns:
+    - name: ''
+      begin: (when)
+      beginCaptures:
+        '1': {name: support.class.goal.mas}
+      end: (do)
+      endCaptures:
+        '1': {name: support.class.goal.mas}
+      patterns:
+      - include: '#launchrule'
+    - name: ''
+      match: (launch)\s*(((\*)|([a-zA-Z_][a-zA-Z0-9_]*))(\s)*:(\s)*[a-zA-Z_][a-zA-Z0-9_]*)\s*\.
+      captures:
+        '1': {name: support.class.goal.mas}
+        '2': {name: string.unquoted.goal.mas}
+    - include: '#comment'
+  launchrule:
+    patterns:
+    - name: ''
+      begin: \[
+      end: \]
+      patterns:
+      - name: support.class.goal.mas
+        match: (type|max|name)
+    - name: support.class.goal.mas
+      match: (entity|@env)
+    - include: '#comment'
+...
