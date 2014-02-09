@@ -156,7 +156,7 @@ repository:
   action-spec:
     patterns:
     - name: ''
-      begin: ([a-zA-Z\$_][a-zA-Z0-9_\$]+)\s*(?:(\()([A-Z][a-zA-Z0-9_]*(?:A-Z][a-zA-Z0-9_]*\s*,\s*)?)(\)))?\s*\{
+      begin: ([a-zA-Z\$_][a-zA-Z0-9_\$]+)\s*(?:(\()\s*([A-Z][a-zA-Z0-9_]*(?:\s*,\s*[A-Z][a-zA-Z0-9_]*)*)\s*(\)))?\s*\{
       beginCaptures:
         '1': {name: entity.name.function.goal.goal}
         '2': {name: punctuation.definition.parameters.begin.goal.goal}

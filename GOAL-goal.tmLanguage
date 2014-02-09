@@ -250,7 +250,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>([a-zA-Z\$_][a-zA-Z0-9_\$]+)\s*(?:(\()([A-Z][a-zA-Z0-9_]*(?:A-Z][a-zA-Z0-9_]*\s*,\s*)?)(\)))?\s*\{</string>
+					<string>([a-zA-Z\$_][a-zA-Z0-9_\$]+)\s*(?:(\()\s*([A-Z][a-zA-Z0-9_]*(?:\s*,\s*[A-Z][a-zA-Z0-9_]*)*)\s*(\)))?\s*\{</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
